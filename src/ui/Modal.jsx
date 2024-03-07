@@ -1,4 +1,7 @@
+/* eslint-disable react/prop-types */
 import styled from "styled-components";
+
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -48,3 +51,16 @@ const Button = styled.button`
     color: var(--color-grey-500);
   }
 `;
+
+export default function Modal({ children, onClose }) {
+  return (
+    <Overlay>
+      <StyledModal>
+        <Button onClick={onClose}>
+          <IoMdCloseCircleOutline />
+        </Button>
+        <div>{children}</div>
+      </StyledModal>
+    </Overlay>
+  );
+}
