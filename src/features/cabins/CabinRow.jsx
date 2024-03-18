@@ -65,8 +65,6 @@ export default function CabinRow({ cabin }) {
   } = cabin;
 
   function handleDuplicateCabin() {
-    console.log("clicked");
-
     createCabin({
       name: `copy of ${name}`,
       maxCapacity,
