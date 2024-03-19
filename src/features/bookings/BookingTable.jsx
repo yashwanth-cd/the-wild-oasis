@@ -3,50 +3,14 @@ import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
 import Empty from "../../ui/Empty";
 import Spinner from "../../ui/Spinner";
+import Pagination from "../../ui/Pagination";
 
 import useBookings from "./useBookings";
 
 function BookingTable() {
-  const { bookings, isLoading } = useBookings();
+  const { bookings, isLoading, count } = useBookings();
   if (isLoading) return <Spinner />;
   if (!bookings?.length) return <Empty resourceName="Bookings" />;
-
-  /* // CLIENT-SIDE FILTERING AND SORTING
-  const [searchParams] = useSearchParams();
-
-  // Implementing the FILTERING and sorting of bookings
-  const filterValue = searchParams.get("status") || "all";
-  let filteredBookings;
-
-  if (filterValue === "all") filteredBookings = bookings;
-
-  if (filterValue === "checked-out") {
-    filteredBookings = bookings.filter(
-      (booking) => booking.status === "checked-out"
-    );
-  }
-
-  if (filterValue === "checked-in") {
-    filteredBookings = bookings.filter(
-      (booking) => booking.status === "checked-in"
-    );
-  }
-
-  if (filterValue === "unconfirmed") {
-    filteredBookings = bookings.filter(
-      (booking) => booking.status === "unconfirmed"
-    );
-  }
-
-  // Implementing the SORTING of bookings
-  const sortBy = searchParams.get("sortBy") || "startDate-desc";
-  const [field, direction] = sortBy.split("-");
-  const modifier = direction === "asc" ? 1 : -1;
-  const sortedBookings = filteredBookings.sort(
-    (a, b) => a[field] - b[field] * modifier
-  );
-
-  */
 
   return (
     <Menus>
@@ -66,6 +30,10 @@ function BookingTable() {
             <BookingRow key={booking.id} booking={booking} />
           )}
         />
+
+        <Table.Footer>
+          <Pagination count={count} />
+        </Table.Footer>
       </Table>
     </Menus>
   );
