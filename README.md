@@ -1,3 +1,5 @@
+### 🚧 The Application might not work as expected as the supabase connection expires after 90 days.
+
 
 ## Demonstration 🖥️
 
